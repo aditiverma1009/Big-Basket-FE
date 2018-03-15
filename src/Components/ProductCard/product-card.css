@@ -1,0 +1,12 @@
+.productimg{
+    height: 13.5em;
+    width: 100%;
+
+}
+.ProductCard{
+    width: 13em;
+    height: 25em;
+    margin-right: 2em;
+    padding: 2em;
+    border: lightgrey solid 3px;
+}

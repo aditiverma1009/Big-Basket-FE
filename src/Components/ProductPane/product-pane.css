@@ -1,0 +1,10 @@
+.ProductPane{
+    margin:2em;
+   
+ 
+     width: 96%;
+     display: flex;
+     flex-wrap: wrap;
+   
+ 
+ }

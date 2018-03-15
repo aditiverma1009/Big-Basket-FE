@@ -3,11 +3,28 @@ import ProductCard from '../ProductCard/ProductCard';
 import PropTypes from 'prop-types';
 import './product-pane.css';
 
-const ProductPane = () => (
-  <div className="ProductPane">
-    <ProductCard />
-  </div>
-);
+const ProductPane = (props) => {
+  const { categoryItems } = props;
+  console.log(categoryItems);
+
+  const productList = categoryItems.map(step => (
+    <ProductCard
+      itemid={step.itemid}
+      category={step.category}
+      brand={step.brand}
+      title={step.title}
+      availableQuantity={step.availableQuantity}
+      cost={step.cost}
+      description={step.description}
+      imageUrl={step.imageUrl}
+    />));
+
+  return (
+    <div className="ProductPane">
+      {productList}
+    </div>);
+};
+
 
 ProductPane.propTypes = {
 };

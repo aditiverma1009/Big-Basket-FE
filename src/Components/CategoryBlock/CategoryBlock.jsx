@@ -6,10 +6,10 @@ import ProductPane from '../ProductPane/ProductPane';
 import PropTypes from 'prop-types';
 import './category-block.css';
 
-const CategoryBlock = () => (
+const CategoryBlock = props => (
   <div className="CategoryBlock">
-    <CategoryHeading />
-    <ProductPane />
+    <CategoryHeading categoryName={props.categoryName} />
+    <ProductPane categoryItems={props.categoryItems} />
   </div>
 );
 

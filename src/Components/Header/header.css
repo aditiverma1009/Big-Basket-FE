@@ -1,11 +1,38 @@
 .Header{
     position: fixed;
+    background-color: white;
     top: 0;
-    width: auto;
-    height:7vh;
-  display:flex;
-  flex-direction: row;
-    width:100%;
-    text-align: center;
     
+    height: 30px;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    width: 100%;
+    text-align: center; 
+    padding:1em;
+    justify-content: space-between;
+
+}
+.websitename{
+    font-weight:900;
+    font-family: sans-serif;
+}
+.RightHeader{
+    align-self: flex-start;
+    
+}
+.LeftHeader{
+    align-self: flex-start;
+    display:flex;
+    flex-direction: row;
+    margin-right:2em;
+}
+.basketBox{
+    display: flex;
+    flex-direction: row;
+}
+.basketBoxDesc{
+    display: flex;
+    flex-direction: column;
 }
