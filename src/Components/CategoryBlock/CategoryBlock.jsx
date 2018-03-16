@@ -10,6 +10,7 @@ const CategoryBlock = props => (
   <div className="CategoryBlock">
     <CategoryHeading categoryName={props.categoryName} />
     <ProductPane
+      basket={props.basket}
       categoryItems={props.categoryItems}
       onAddItem={itemid => props.onAddItem(itemid)}
       onDeleteItem={itemid => props.onDeleteItem(itemid)}

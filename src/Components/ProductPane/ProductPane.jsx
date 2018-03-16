@@ -9,6 +9,7 @@ const ProductPane = (props) => {
 
   const productList = categoryItems.map(step => (
     <ProductCard
+      basket={props.basket}
       itemid={step.itemid}
       category={step.category}
       brand={step.brand}

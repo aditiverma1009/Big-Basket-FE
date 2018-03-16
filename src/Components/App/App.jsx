@@ -248,12 +248,14 @@ class App extends React.Component {
           <Header
             inventory={this.state.inventory}
             basket={this.state.basket}
+            allOrder={this.state.allOrder}
             onShowAllOrders={() => this.onShowAllOrders()}
             onBasketClick={() => this.onBasketClick()}
           />
           <Container >
             <DiplayPage
               inventory={this.state.inventory}
+              basket={this.state.basket}
               onAddItem={itemid => this.onAddItem(itemid)}
               onDeleteItem={itemid => this.onDeleteItem(itemid)}
             />
@@ -266,6 +268,7 @@ class App extends React.Component {
           <Header
             inventory={this.state.inventory}
             basket={this.state.basket}
+            allOrder={this.state.allOrder}
             onShowAllOrders={() => this.onShowAllOrders()}
             onBasketClick={() => this.onBasketClick()}
           />
@@ -280,6 +283,7 @@ class App extends React.Component {
           <Header
             basket={this.state.basket}
             inventory={this.state.inventory}
+            allOrder={this.state.allOrder}
             onShowAllOrders={() => this.onShowAllOrders()}
             onBasketClick={() => this.onBasketClick()}
           />

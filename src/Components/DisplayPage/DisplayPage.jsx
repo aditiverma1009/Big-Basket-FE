@@ -11,6 +11,7 @@ const DisplayPage = (props) => {
   const { inventory } = props;
   const categorisedItems = Object.keys(inventory).map(eachCategory => (
     <CategoryBlock
+      basket={props.basket}
       categoryName={eachCategory}
       categoryItems={inventory[eachCategory]}
       onAddItem={itemid => props.onAddItem(itemid)}
