@@ -17,6 +17,7 @@ const AllOrdersPage = (props) => {
   );
 };
 AllOrdersPage.propTypes = {
+  allOrder: PropTypes.objectOf.isRequired,
 };
 
 export default AllOrdersPage;

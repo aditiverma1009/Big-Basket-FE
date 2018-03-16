@@ -11,7 +11,6 @@ const findOrderQuantity = (basket, id) => basket.map((step) => {
 const ProductCard = (props) => {
   const basket = props.basket;
   const quantityinCart = findOrderQuantity(basket, props.itemid);
-  console.log(quantityinCart);
   const availableQuantity = props.availableQuantity;
   const itemid = props.itemid;
   let check = 0;
@@ -35,6 +34,7 @@ const ProductCard = (props) => {
         <p className="mrp">MRP. {props.cost}</p>
 
         <i
+
           className="material-icons add"
           onClick={itemid => props.onAddItem(props.itemid)}
         >add_box

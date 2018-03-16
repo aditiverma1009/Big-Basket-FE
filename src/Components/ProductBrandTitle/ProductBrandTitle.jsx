@@ -10,6 +10,8 @@ const ProductBrandTitle = props => (
 );
 
 ProductBrandTitle.propTypes = {
+  brand: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
 };
 
 export default ProductBrandTitle;

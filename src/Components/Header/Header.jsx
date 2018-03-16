@@ -39,7 +39,7 @@ class Header extends React.Component {
             </i>
             <div className="basketBoxDesc">
               <span>MyBasket</span>
-              <span>3 items</span>
+              <span>{this.props.counter} items</span>
             </div>
           </div>
         </div>

@@ -17,6 +17,7 @@ class App extends React.Component {
       resp1Code: 0,
       basket: [],
       allOrder: [],
+      counter: 0,
     };
   }
 
@@ -52,52 +53,8 @@ class App extends React.Component {
       });
   }
 
-
   onAddItem=(itemid) => {
-    const { inventory } = this.state;
-    const { basket } = this.state;
-    const newbasket = [];
-    return Object.keys(inventory).map(eachKeyOfCategory => inventory[eachKeyOfCategory]
-      .map((eachItem) => {
-        console.log('hi');
-        let found = 0;
-        Object.keys(basket).forEach((eachItemInBasket) => {
-          if (itemid === eachItem.itemid && eachItemInBasket.itemid === itemid) {
-            newbasket.push({
-              itemid,
-              category: eachItem.category,
-              brand: eachItem.brand,
-              title: eachItem.title,
-              description: eachItem.description,
-              quantity: (eachItemInBasket.quantity + 1),
-            });
-
-            found = 1;
-          }
-          console.log(basket);
-        });
-        if (found === 0 && eachItem.itemid === itemid) {
-          console.log('push');
-          newbasket.push({
-            itemid,
-            category: eachItem.category,
-            brand: eachItem.brand,
-            title: eachItem.title,
-            description: eachItem.description,
-            quantity: 1,
-          });
-        }
-        this.setState({
-          basket: newbasket,
-        });
-        console.log('hiiiii');
-        console.log(newbasket);
-        return newbasket;
-      }));
-  }
-
-  onAddItem=(itemid) => {
-    // console.log('hi');
+    // console.log('hi aditi');
     const { inventory } = this.state;
     const { basket } = this.state;
     let found = 0;
@@ -106,8 +63,10 @@ class App extends React.Component {
       if (valueofeach.itemid === itemid) {
         found = 1;
         valueofeach.availableQuantity += 1;
+        const { counter } = this.state;
         this.setState({
           basket,
+          counter: (counter + 1),
         });
         console.log(this.state.basket);
       }
@@ -125,8 +84,10 @@ class App extends React.Component {
             availableQuantity: 1,
           });
         }
+        const { counter } = this.state;
         this.setState({
           basket,
+          counter: (counter + 1),
         });
         console.log(this.state.basket);
         return true;
@@ -135,16 +96,16 @@ class App extends React.Component {
 
   onDeleteItem=(itemid) => {
     // console.log('hi');
-    const { inventory } = this.state;
+
     const { basket } = this.state;
-    let found = 0;
     Object.keys(basket).forEach((eachItemInBasket) => {
       const valueofeach = basket[eachItemInBasket];
       if (valueofeach.itemid === itemid) {
-        found = 1;
         valueofeach.availableQuantity -= 1;
+        const { counter } = this.state;
         this.setState({
           basket,
+          counter: (counter - 1),
         });
         console.log(this.state.basket);
       }
@@ -160,7 +121,7 @@ class App extends React.Component {
 
 
   onCheckoutButton=() => {
-    const basket = this.state.basket;
+    const { basket } = this.state;
     console.log(basket);
     const sortedbasket = this.sortBasketBy(basket);
     console.log(sortedbasket);
@@ -246,6 +207,7 @@ class App extends React.Component {
       return (
         <div className>
           <Header
+            counter={this.state.counter}
             inventory={this.state.inventory}
             basket={this.state.basket}
             allOrder={this.state.allOrder}
