@@ -11,7 +11,7 @@ class Header extends React.Component {
   }
   render() {
     const { inventory } = this.props;
-    // const { basket } = this.props;
+    const { basket } = this.props;
     return (
       <div className="Header">
         <div className="RightHeader">
@@ -23,13 +23,18 @@ class Header extends React.Component {
             className="AllOrdersBtn"
             type="submit"
             value="submit"
-            onClick={() => this.props.onShowAllOrders()}
+            onClick={() =>
+              this.props.onShowAllOrders()}
           >All Orders
           </button>
-          <div className="basketBox">
+          <div
+            className="basketBox"
+            onClick={() =>
+              this.props.onBasketClick()}
+          >
             <i
+
               className="material-icons shopping_cart"
-              onClick={() => this.props.onBasketClick()}
             >shopping_basket
             </i>
             <div className="basketBoxDesc">

@@ -52,25 +52,6 @@ class App extends React.Component {
       });
   }
 
-  addDetailsToOrder=(allOrder) => {
-    const { inventory } = this.state;
-    allOrder.forEach((eachOrderSet) => {
-      eachOrderSet.orderitems.forEach((eachOrderItem) => {
-        Object.keys(inventory).map(eachKeyOfCategory => inventory[eachKeyOfCategory]
-          .map((eachItem) => {
-            if (eachOrderItem.ordereditemid === eachItem.itemid) {
-              eachOrderItem.category = eachItem.category;
-              eachOrderItem.brand = eachItem.brand;
-              eachOrderItem.title = eachItem.title;
-              eachOrderItem.description = eachItem.description;
-            }
-            return true;
-          }));
-      });
-    });
-    const sortedOrders = this.sorting(allOrder);
-    return (sortedOrders);
-  }
 
   sorting=data => data.map((orderset) => {
     const sortedtempobj = this.sortBy(orderset.orderitems);
@@ -144,7 +125,7 @@ class App extends React.Component {
       const valueofeach = basket[eachItemInBasket];
       if (valueofeach.itemid === itemid) {
         found = 1;
-        valueofeach.quantity += 1;
+        valueofeach.availableQuantity += 1;
         this.setState({
           basket,
         });
@@ -158,9 +139,10 @@ class App extends React.Component {
             itemid,
             category: eachItem.category,
             brand: eachItem.brand,
+            cost: eachItem.cost,
             title: eachItem.title,
             description: eachItem.description,
-            quantity: 1,
+            availableQuantity: 1,
           });
         }
         this.setState({
@@ -180,7 +162,7 @@ class App extends React.Component {
       const valueofeach = basket[eachItemInBasket];
       if (valueofeach.itemid === itemid) {
         found = 1;
-        valueofeach.quantity -= 1;
+        valueofeach.availableQuantity -= 1;
         this.setState({
           basket,
         });
@@ -190,9 +172,45 @@ class App extends React.Component {
   }
 
   onBasketClick=() => {
+    console.log('hi basket');
     this.setState({
       page: 2,
     });
+  }
+
+  addDetailsToOrder=(allOrder) => {
+    const { inventory } = this.state;
+    allOrder.forEach((eachOrderSet) => {
+      eachOrderSet.orderitems.forEach((eachOrderItem) => {
+        Object.keys(inventory).map(eachKeyOfCategory => inventory[eachKeyOfCategory]
+          .map((eachItem) => {
+            if (eachOrderItem.ordereditemid === eachItem.itemid) {
+              eachOrderItem.category = eachItem.category;
+              eachOrderItem.brand = eachItem.brand;
+              eachOrderItem.title = eachItem.title;
+              eachOrderItem.description = eachItem.description;
+            }
+            return true;
+          }));
+      });
+    });
+    const sortedOrders = this.sorting(allOrder);
+    return (sortedOrders);
+  }
+
+
+  onCheckoutButton=() => {
+    const order = this.state.allOrder;
+    const sortedorder = this.sortBy(order);
+    axios.post('/checkout', {
+      order: sortedorder,
+    })
+      .then((response) => {
+        console.log(response);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   }
 
   render() {
@@ -205,6 +223,7 @@ class App extends React.Component {
             inventory={this.state.inventory}
             basket={this.state.basket}
             onShowAllOrders={() => this.onShowAllOrders()}
+            onBasketClick={() => this.onBasketClick()}
           />
           <Container >
             <DiplayPage
@@ -222,6 +241,7 @@ class App extends React.Component {
             inventory={this.state.inventory}
             basket={this.state.basket}
             onShowAllOrders={() => this.onShowAllOrders()}
+            onBasketClick={() => this.onBasketClick()}
           />
           <Container >
             <AllOrdersPage allOrder={this.state.allOrder} />
@@ -235,12 +255,13 @@ class App extends React.Component {
             basket={this.state.basket}
             inventory={this.state.inventory}
             onShowAllOrders={() => this.onShowAllOrders()}
-            onBasketClick={() => this.onBasketClick}
+            onBasketClick={() => this.onBasketClick()}
           />
 
 
           <Basket
             basket={this.state.basket}
+            onCheckoutButton={() => this.onCheckoutButton()}
 
           />
 

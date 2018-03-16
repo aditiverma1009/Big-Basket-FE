@@ -1,5 +1,4 @@
 import React from 'react';
-import OrderElement from '../OrderElement/OrderElement';
 import PropTypes from 'prop-types';
 import './order-block.css';
 
