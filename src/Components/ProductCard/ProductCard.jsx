@@ -18,9 +18,17 @@ const ProductCard = (props) => {
       <p className="Desc">{props.description}</p>
       <div className="ProductCardAction">
         <p className="mrp">MRP. {props.cost}</p>
-        <i className="material-icons add">add_box</i>
+        <i
+          className="material-icons add"
+          onClick={itemid => props.onAddItem(props.itemid)}
+        >add_box
+        </i>
         <input type="text" className="counterfield" value="1" />
-        <i className="material-icons minus">indeterminate_check_box</i>
+        <i
+          className="material-icons minus"
+          onClick={itemid => props.onDeleteItem(props.itemid)}
+        >indeterminate_check_box
+        </i>
       </div>
     </div>
   );

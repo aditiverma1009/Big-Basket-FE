@@ -8,11 +8,13 @@ import './display-page.css';
 
 
 const DisplayPage = (props) => {
-  const inventory = props.inventory;
+  const { inventory } = props;
   const categorisedItems = Object.keys(inventory).map(eachCategory => (
     <CategoryBlock
       categoryName={eachCategory}
       categoryItems={inventory[eachCategory]}
+      onAddItem={itemid => props.onAddItem(itemid)}
+      onDeleteItem={itemid => props.onDeleteItem(itemid)}
     />
   ));
 

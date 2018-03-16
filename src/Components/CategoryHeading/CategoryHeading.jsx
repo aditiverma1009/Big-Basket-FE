@@ -2,9 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import './category-heading.css';
 
-const CategoryHeading = () => (
+const CategoryHeading = props => (
   <div className="CategoryHeading">
-    Category heading
+    {props.categoryName}
   </div>
 );
 

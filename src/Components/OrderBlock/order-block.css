@@ -1,0 +1,41 @@
+.titletable{
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+}
+.itemtable{width:100%;}
+.headingOfOrderBrief{
+    background-color: dimgrey;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+}
+.Categorytitlerow{
+    display:flex;
+    flex-direction: column;
+    justify-content: space-between; 
+    background-color:lightgrey;
+    width:100%;
+}
+.headingOfOrderItems{
+    
+    background-color: lightskyblue;
+    display: flex;
+    justify-content: space-between;
+
+}
+th{
+    display:flex;
+    flex-direction: column;
+    justify-content: space-between;  
+    width:100%;  
+}
+td{
+    width:100%;
+}
+.simplerow tr td{
+    display:flex;
+    flex-direction: column;
+    justify-content: space-between;  
+    width:100%;  
+}

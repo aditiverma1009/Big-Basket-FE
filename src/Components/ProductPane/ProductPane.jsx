@@ -17,6 +17,8 @@ const ProductPane = (props) => {
       cost={step.cost}
       description={step.description}
       imageUrl={step.imageUrl}
+      onAddItem={itemid => props.onAddItem(itemid)}
+      onDeleteItem={itemid => props.onDeleteItem(itemid)}
     />));
 
   return (
