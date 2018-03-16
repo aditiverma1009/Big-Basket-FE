@@ -53,26 +53,6 @@ class App extends React.Component {
   }
 
 
-  sorting=data => data.map((orderset) => {
-    const sortedtempobj = this.sortBy(orderset.orderitems);
-    return sortedtempobj;
-  })
-
-  sortBy=(data) => {
-    const itemByCategory = {};
-    data.forEach((eachitem) => {
-      if (eachitem.category in itemByCategory) {
-        // console.log(`if not exist${item.category}`);
-        itemByCategory[eachitem.category].push(eachitem);
-      } else {
-        const { category } = eachitem;
-        itemByCategory[category] = [];
-        itemByCategory[category].push(eachitem);
-      }
-    });
-    return itemByCategory;
-  }
-
   onAddItem=(itemid) => {
     const { inventory } = this.state;
     const { basket } = this.state;
@@ -178,6 +158,46 @@ class App extends React.Component {
     });
   }
 
+
+  onCheckoutButton=() => {
+    const basket = this.state.basket;
+    console.log(basket);
+    const sortedbasket = this.sortBasketBy(basket);
+    console.log(sortedbasket);
+    axios.post('/checkout', {
+      order: sortedbasket,
+    })
+      .then((response) => {
+        console.log(response);
+        this.onShowAllOrders();
+      }).then(() => {
+        this.setState({
+          page: 1,
+        });
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }
+
+
+  sortBasketBy = (data) => {
+    const itemByCategory = {};
+    data.forEach((eachitem) => {
+      if (eachitem.category in itemByCategory) {
+        // console.log(`if not exist${item.category}`);
+        itemByCategory[eachitem.category].push(eachitem);
+      } else {
+        const { category } = eachitem;
+        itemByCategory[category] = [];
+        itemByCategory[category].push(eachitem);
+      }
+    });
+    console.log(data);
+    console.log(itemByCategory);
+    return itemByCategory;
+  };
+
   addDetailsToOrder=(allOrder) => {
     const { inventory } = this.state;
     allOrder.forEach((eachOrderSet) => {
@@ -199,19 +219,25 @@ class App extends React.Component {
   }
 
 
-  onCheckoutButton=() => {
-    const order = this.state.allOrder;
-    const sortedorder = this.sortBy(order);
-    axios.post('/checkout', {
-      order: sortedorder,
-    })
-      .then((response) => {
-        console.log(response);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+  sortBy=(data) => {
+    const itemByCategory = {};
+    data.forEach((eachitem) => {
+      if (eachitem.category in itemByCategory) {
+        // console.log(`if not exist${item.category}`);
+        itemByCategory[eachitem.category].push(eachitem);
+      } else {
+        const { category } = eachitem;
+        itemByCategory[category] = [];
+        itemByCategory[category].push(eachitem);
+      }
+    });
+    return itemByCategory;
   }
+
+  sorting=data => data.map((orderset) => {
+    const sortedtempobj = this.sortBy(orderset.orderitems);
+    return sortedtempobj;
+  })
 
   render() {
     // console.log(this.state.allOrder);
