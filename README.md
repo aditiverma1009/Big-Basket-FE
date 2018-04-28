@@ -1,3 +1,14 @@
+Works with the bigBasket Backend only.
+
+Steps to run the entire project on your local (mac)-
+
+Clone both repositories of BigBasket
+npm install for both
+npm start for backend and node server.js for frontend repository
+Check the output on localhost:3000 or localhost:1337 (for only frontend)
+
+--------------------------------------------
+
 This project was made during an evaluation process which went for 24hrs straight.
 The project teachnology stack includes -> 
 1 ) Frontend- React , CSS, HTML and Javascipt
